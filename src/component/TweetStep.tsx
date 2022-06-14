@@ -19,7 +19,7 @@ export const TweetStep = ({ handleNextStep, tweetNumber }: TweetStepProps) => {
     >
       <VStack>
         <Heading>Tweet number: {tweetNumber}</Heading>
-        <TweetEmbed tweetId="692527862369357824" />
+        <TweetEmbed tweetId="692527862369357824" placeholder="processing" />
         <Text pt="5">How was your experience?</Text>
         <Stack direction="row" spacing={4} align="center" p="5">
           <Button colorScheme="green" variant="solid" w="20">
