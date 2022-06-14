@@ -1,5 +1,5 @@
 {
-  "name": "homepage",
+  "name": "tweet-form",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
@@ -9,7 +9,7 @@
     "@chakra-ui/react": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "framer-motion": "6.3.3",
+    "framer-motion": "6.3.11",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-icons": "4.3.1",
