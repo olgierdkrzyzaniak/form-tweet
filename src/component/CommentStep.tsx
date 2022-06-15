@@ -1,15 +1,12 @@
 import React from "react";
-import { Box, VStack, Textarea, Text, Button } from "@chakra-ui/react";
+import { Box, VStack, Textarea, Text, Button, Heading } from "@chakra-ui/react";
 
 type TweetStepProps = {
-  handleNextStep: () => void;
+  handleNextStep: (num: number) => void;
   tweetNumber: number;
 };
 
-export const CommentStep = ({
-  handleNextStep,
-  tweetNumber
-}: TweetStepProps) => {
+const CommentStep = ({ handleNextStep, tweetNumber }: TweetStepProps) => {
   return (
     <Box
       borderWidth="2px"
@@ -20,10 +17,12 @@ export const CommentStep = ({
       p="5"
     >
       <VStack align="center">
+        <Heading>Tweet number: {tweetNumber}/10</Heading>
+
         <Text pb="5">Tell me why?</Text>
         <Textarea placeholder="Here is a sample placeholder" />
         <Button
-          onClick={() => handleNextStep()}
+          onClick={() => handleNextStep(1)}
           colorScheme="blue"
           variant="solid"
           w="20"

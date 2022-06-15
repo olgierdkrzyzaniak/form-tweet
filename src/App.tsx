@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import TweetStep from "./component/TweetStep";
 import CommentStep from "./component/CommentStep";
+import FinalStep from "./component/FinalStep";
+import InitialStep from "./component/InitialStep";
 import { VStack } from "@chakra-ui/react";
 
 export default function Example() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(21);
+  console.log(currentStep);
 
-  const handleNextStep = () => {
+  const handleNextStep = (num: number) => {
+    setCurrentStep(currentStep + num);
     console.log(currentStep);
-    setCurrentStep(currentStep + 1);
   };
   const steps = [
     <TweetStep
@@ -20,9 +23,17 @@ export default function Example() {
       tweetNumber={Math.floor(currentStep / 2) + 1}
     />
   ];
+  const background = [
+    <FinalStep handleNextStep={handleNextStep} />,
+    <InitialStep handleNextStep={handleNextStep} />
+  ];
   return (
     <>
-      <VStack>{steps[currentStep % 2]}</VStack>
+      <VStack mt="10">
+        {currentStep / 2 < 10
+          ? steps[currentStep % 2]
+          : background[currentStep - 20]}
+      </VStack>
     </>
   );
 }
