@@ -3,9 +3,10 @@ import { Box, VStack, Text, Button, Heading } from "@chakra-ui/react";
 
 type StepProps = {
   handleNextStep: (num: number) => void;
+  setStart: (date: Date) => void;
 };
 
-const CommentStep = ({ handleNextStep }: StepProps) => {
+const InitialStep = ({ handleNextStep, setStart }: StepProps) => {
   return (
     <Box
       borderWidth="2px"
@@ -22,7 +23,11 @@ const CommentStep = ({ handleNextStep }: StepProps) => {
           Zapraszam do wzięcia udziału w badaniu: coś tam coś tam coś tam coś
         </Text>
         <Button
-          onClick={() => handleNextStep(-21)}
+          onClick={() => {
+            handleNextStep(-21);
+            const date = new Date();
+            setStart(date);
+          }}
           colorScheme="blue"
           variant="solid"
         >
@@ -33,4 +38,4 @@ const CommentStep = ({ handleNextStep }: StepProps) => {
   );
 };
 
-export default CommentStep;
+export default InitialStep;

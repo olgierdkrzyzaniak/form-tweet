@@ -1,11 +1,16 @@
-import React from "react";
-import { Box, VStack, Text, Button, Heading } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box, VStack, Text, Button, Heading, Link } from "@chakra-ui/react";
+import axios from "axios";
 
 type StepProps = {
-  handleNextStep: (num: number) => void;
+  start: Date;
+  clicks: number;
+  opinionRate: number[];
 };
 
-const CommentStep = ({ handleNextStep }: StepProps) => {
+const FinalStep = ({ start, clicks, opinionRate }: StepProps) => {
+  const [disable, setDisable] = useState(false);
+
   return (
     <Box
       borderWidth="2px"
@@ -23,16 +28,43 @@ const CommentStep = ({ handleNextStep }: StepProps) => {
           wyniki.
         </Text>
         <Button
-          onClick={() => handleNextStep(1)}
+          onClick={() => {
+            const end = new Date();
+            const dane = {
+              Wersja: 1,
+              Start: start.toLocaleString("pl-PL"),
+              Koniec: end.toLocaleString("pl-PL"),
+              "Czas trwania": end - start,
+              Kliknięcia: clicks,
+              Zgłoszone: opinionRate[1],
+              Komentarze: opinionRate[0]
+            };
+            axios
+              .post("https://sheetdb.io/api/v1/926rldkzmr0fl", {
+                data: dane
+              })
+              .then((response) => {
+                console.log(response.data);
+              });
+            setDisable(true);
+          }}
           colorScheme="blue"
           variant="solid"
           w="20"
+          isDisabled={disable}
         >
-          Zakończ
+          {disable ? "Wysłane" : "Zakończ"}
         </Button>
       </VStack>
+      <Text>
+        Dodatkowo będę super wdzięczny jeśli zechcesz wypełnić króką ankietę na
+        temat badania.
+      </Text>
+      <Link href="https://chakra-ui.com" isExternal>
+        Chakra Design system
+      </Link>
     </Box>
   );
 };
 
-export default CommentStep;
+export default FinalStep;

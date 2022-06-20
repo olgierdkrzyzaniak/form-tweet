@@ -22,9 +22,16 @@ const randomizedTweets = tweets.sort((a, b) => 0.5 - Math.random());
 type TweetStepProps = {
   handleNextStep: (num: number) => void;
   tweetNumber: number;
+  setOpinionRate: (arr: number[]) => void;
+  opinionRate: number[];
 };
 
-const TweetStep = ({ handleNextStep, tweetNumber }: TweetStepProps) => {
+const TweetStep = ({
+  handleNextStep,
+  tweetNumber,
+  setOpinionRate,
+  opinionRate
+}: TweetStepProps) => {
   return (
     <Box
       borderWidth="2px"
@@ -50,7 +57,10 @@ const TweetStep = ({ handleNextStep, tweetNumber }: TweetStepProps) => {
             Dalej
           </Button>
           <Button
-            onClick={() => handleNextStep(1)}
+            onClick={() => {
+              handleNextStep(1);
+              setOpinionRate([opinionRate[0], opinionRate[1] + 1]);
+            }}
             colorScheme="red"
             variant="solid"
             w="20"

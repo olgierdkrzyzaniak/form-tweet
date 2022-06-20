@@ -1,31 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TweetStep from "./component/TweetStep";
 import CommentStep from "./component/CommentStep";
 import FinalStep from "./component/FinalStep";
 import InitialStep from "./component/InitialStep";
 import { VStack } from "@chakra-ui/react";
 
-export default function Example() {
+export default function App() {
   const [currentStep, setCurrentStep] = useState(21);
-  console.log(currentStep);
+  const [clicks, setClicks] = useState(1);
+  const [start, setStart] = useState(Date.now);
+  const [opinionRate, setOpinionRate] = useState([0, 0]);
+
+  useEffect(() => {
+    const increaseClicks = () => setClicks(clicks + 1);
+    window.addEventListener("click", increaseClicks);
+    return () => window.removeEventListener("click", increaseClicks);
+  });
 
   const handleNextStep = (num: number) => {
     setCurrentStep(currentStep + num);
-    console.log(currentStep);
   };
   const steps = [
     <TweetStep
       handleNextStep={handleNextStep}
       tweetNumber={Math.floor(currentStep / 2) + 1}
+      opinionRate={opinionRate}
+      setOpinionRate={setOpinionRate}
     />,
     <CommentStep
       handleNextStep={handleNextStep}
       tweetNumber={Math.floor(currentStep / 2) + 1}
+      opinionRate={opinionRate}
+      setOpinionRate={setOpinionRate}
     />
   ];
   const background = [
-    <FinalStep handleNextStep={handleNextStep} />,
-    <InitialStep handleNextStep={handleNextStep} />
+    <FinalStep start={start} clicks={clicks} opinionRate={opinionRate} />,
+    <InitialStep handleNextStep={handleNextStep} setStart={setStart} />
   ];
   return (
     <>
