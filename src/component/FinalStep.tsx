@@ -24,8 +24,7 @@ const FinalStep = ({ start, clicks, opinionRate }: StepProps) => {
         <Heading>Dziękuję!</Heading>
 
         <Text pb="5">
-          Dziękuję za udział w badaniu. Kliknij zakończ "Zakończ" aby wysłać
-          wyniki.
+          Dziękuję za udział w badaniu. Kliknij "Zakończ" aby wysłać wyniki.
         </Text>
         <Button
           onClick={() => {
@@ -56,11 +55,8 @@ const FinalStep = ({ start, clicks, opinionRate }: StepProps) => {
           {disable ? "Wysłane" : "Zakończ"}
         </Button>
       </VStack>
-      <Text>
-        Dodatkowo będę super wdzięczny jeśli zechcesz wypełnić krótką ankietę na
-        temat badania.
-      </Text>
-      <Text>Wróć do dokumentu na google forms.</Text>
+
+      <Text pt={5}>Wróć do dokumentu na google forms.</Text>
     </Box>
   );
 };
