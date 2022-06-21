@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, VStack, Text, Button, Heading, Link } from "@chakra-ui/react";
+import { Box, VStack, Text, Button, Heading, Spacer } from "@chakra-ui/react";
 import axios from "axios";
 
 type StepProps = {
@@ -57,12 +57,10 @@ const FinalStep = ({ start, clicks, opinionRate }: StepProps) => {
         </Button>
       </VStack>
       <Text>
-        Dodatkowo będę super wdzięczny jeśli zechcesz wypełnić króką ankietę na
+        Dodatkowo będę super wdzięczny jeśli zechcesz wypełnić krótką ankietę na
         temat badania.
       </Text>
-      <Link href="https://chakra-ui.com" isExternal>
-        Chakra Design system
-      </Link>
+      <Text>Wróć do dokumentu na google forms.</Text>
     </Box>
   );
 };
